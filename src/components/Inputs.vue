@@ -203,14 +203,6 @@ export default {
       elements: {}
     }
   },
-  mounted() {
-    const style = document.createElement('style')
-    style.type = 'text/css'
-    style.id = 'mystyle'
-    style.appendChild(document.createTextNode(''))
-    this.styleNode = style.childNodes[0]
-    document.head.appendChild(style)
-  },
   watch: {
     customCSS(val) {
       const styleElm = document.getElementById('mystyle')
@@ -219,7 +211,6 @@ export default {
       }
     }
   },
-
   methods: {
     select(value) {
       this.selectedElement = null
