@@ -31,6 +31,32 @@
     </div>
 
     <div>
+      <b>Border radius:</b> <label><input type="checkbox" v-model="combinedBorderRadius" /> combined</label>
+      <div class="side-by-side" v-if="combinedBorderRadius">
+        <span></span>
+        <CombiInput
+          :value="getValue('border-radius')"
+          :sizing="getSizing('border-radius')"
+          :hidecolor="true"
+          :border="false"
+          @change="obj => inputChange('border-radius', obj)"
+        />
+      </div>
+      <div v-if="!combinedBorderRadius">
+        <div class="side-by-side" v-for="f in borderRadius" :key="f.id">
+          <span>{{ f.label }}</span>
+          <CombiInput
+            :value="getValue(f.id)"
+            :sizing="getSizing(f.id)"
+            :hidecolor="true"
+            :border="false"
+            @change="obj => inputChange(f.id, obj)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div>
       <b>Padding:</b> <label><input type="checkbox" v-model="combinedPadding" /> combined</label>
       <div class="side-by-side" v-if="combinedPadding">
         <span>Combined</span>
@@ -105,6 +131,7 @@ export default {
       combinedMargin: false,
       combinedPadding: false,
       combinedBorder: false,
+      combinedBorderRadius: false,
       innerValues: {},
       sizes: [
         { id: 'width', hidecolor: true, label: 'Width' },
@@ -131,6 +158,12 @@ export default {
         { id: 'border-right', label: 'R' },
         { id: 'border-bottom', label: 'B' },
         { id: 'border-left', label: 'L' }
+      ],
+      borderRadius: [
+        { id: 'border-top-left-radius', label: 'TL' },
+        { id: 'border-top-right-radius', label: 'TR' },
+        { id: 'border-bottom-right-radius', label: 'BR' },
+        { id: 'border-bottom-left-radius', label: 'BL' }
       ]
     }
   },
@@ -143,6 +176,13 @@ export default {
         this.removeOtherBorders()
       } else {
         this.removeBorder()
+      }
+    },
+    combinedBorderRadius() {
+      if (this.combinedBorderRadius) {
+        this.removeOtherBorderRadius()
+      } else {
+        this.removeBorderRadius()
       }
     },
     combinedMargin() {
@@ -224,6 +264,26 @@ export default {
         this.innerValues.border = borderTopCopy
       }
     },
+    removeBorderRadius() {
+      if (this.innerValues['border-radius'] && this.innerValues['border-radius'].value) {
+        const borderRadiusCopy = JSON.parse(JSON.stringify(this.innerValues['border-radius']))
+        this.innerValues['border-top-left-radius'] = borderRadiusCopy
+        this.innerValues['border-top-right-radius'] = borderRadiusCopy
+        this.innerValues['border-bottom-right-radius'] = borderRadiusCopy
+        this.innerValues['border-bottom-left-radius'] = borderRadiusCopy
+        this.innerValues['border-radius'] = null
+      }
+    },
+    removeOtherBorderRadius() {
+      const borderRadiusTopCopy = JSON.parse(JSON.stringify(this.innerValues['border-top-left-radius']))
+      this.innerValues['border-top-left-radius'] = null
+      this.innerValues['border-top-right-radius'] = null
+      this.innerValues['border-bottom-right-radius'] = null
+      this.innerValues['border-bottom-left-radius'] = null
+      if (!this.innerValues.borderRadius) {
+        this.innerValues['border-radius'] = borderRadiusTopCopy
+      }
+    },
     populateInputs() {
       this.innerValues = this.values
       if (this.innerValues.border) {
@@ -234,6 +294,9 @@ export default {
       }
       if (this.innerValues.padding) {
         this.combinedPadding = true
+      }
+      if (this.innerValues['border-radius']) {
+        this.combinedBorderRadius = true
       }
     },
     onChange() {
