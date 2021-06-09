@@ -15,8 +15,6 @@
 
         <br />
         <textarea v-model="customCSS"></textarea>
-        <!-- <component type="text/css" v-model="customCSS" v-bind:is="style"></component>
-        <component type="style" v-html="customCSS" v-bind:is="style"></component> -->
       </div>
 
       <div>
@@ -123,7 +121,7 @@
         <div><input type="file" /></div>
         <div class="right-aligned"><i class="selectButton" @click="select('file')">&gt;</i></div>
       </div>
-      <h2>Buttons</h2>
+      <!-- <h2>Buttons</h2>
       <div>
         <div>button</div>
         <div><button type="button">button</button></div>
@@ -187,6 +185,7 @@
         </div>
         <div class="right-aligned"><i class="selectButton" @click="select('select')">&gt;</i></div>
       </div>
+      -->
     </form>
   </div>
 </template>
@@ -237,7 +236,7 @@ export default {
         attributes.forEach(at => {
           if (at[1] && at[1].value !== '') {
             output.push(`${at[0]}: ${at[1].value}${at[1].sizing}`)
-            if (`${at[0]}`.includes('border')) {
+            if (`${at[0]}`.includes('border') && !`${at[0]}`.includes('radius')) {
               output.push(`${at[1].borderStyle} ${at[1].color}`)
             }
             output.push(';')
