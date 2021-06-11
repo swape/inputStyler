@@ -1,7 +1,9 @@
 <template>
   <div class="element-control">
     <div>
-      <b>Borders:</b> <label><input type="checkbox" v-model="combinedBorder" /> combined</label>
+      <div class="side-by-side">
+        <b>Borders:</b> <label><input type="checkbox" v-model="combinedBorder" /> combined</label>
+      </div>
       <div class="side-by-side" v-if="combinedBorder">
         <span></span>
         <CombiInput
@@ -31,7 +33,9 @@
     </div>
 
     <div>
-      <b>Border radius:</b> <label><input type="checkbox" v-model="combinedBorderRadius" /> combined</label>
+      <div class="side-by-side">
+        <b>Border radius:</b> <label><input type="checkbox" v-model="combinedBorderRadius" /> combined</label>
+      </div>
       <div class="side-by-side" v-if="combinedBorderRadius">
         <span></span>
         <CombiInput
@@ -56,9 +60,11 @@
       </div>
     </div>
     <div>
-      <b>Outline</b>
-      <div>
-        <span></span>
+      <div class="side-by-side">
+        <b>Outline:</b>
+      </div>
+      <div class="side-by-side">
+        <span> </span>
         <CombiInput
           :value="getValue('outline')"
           :sizing="getSizing('outline')"
@@ -72,7 +78,9 @@
     </div>
 
     <div>
-      <b>Padding:</b> <label><input type="checkbox" v-model="combinedPadding" /> combined</label>
+      <div class="side-by-side">
+        <b>Padding:</b> <label><input type="checkbox" v-model="combinedPadding" /> combined</label>
+      </div>
       <div class="side-by-side" v-if="combinedPadding">
         <span>Combined</span>
         <CombiInput
@@ -96,7 +104,9 @@
     </div>
 
     <div>
-      <b>Margin:</b> <label><input type="checkbox" v-model="combinedMargin" /> combined</label>
+      <div class="side-by-side">
+        <b>Margin:</b> <label><input type="checkbox" v-model="combinedMargin" /> combined</label>
+      </div>
       <div class="side-by-side" v-if="combinedMargin">
         <span>Combined</span>
         <CombiInput
@@ -120,7 +130,9 @@
     </div>
 
     <div>
-      <b>Size:</b>
+      <div class="side-by-side">
+        <b>Size:</b>
+      </div>
       <div class="side-by-side" v-for="f in sizes" :key="f.id">
         <span>{{ f.label }}</span>
         <CombiInput
@@ -360,6 +372,7 @@ export default {
   align-items: center;
   font-family: 'JetBrains Mono', Monaco, Menlo, 'Courier New', monospace;
   font-size: 13px;
+  margin-bottom: 5px;
 }
 .side-by-side > span {
   text-align: left;

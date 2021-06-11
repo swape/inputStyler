@@ -14,7 +14,7 @@
         </div>
 
         <br />
-        <textarea v-model="customCSS"></textarea>
+        <textarea v-model="customCSS" readonly class="item-css"></textarea>
       </div>
 
       <div>
@@ -45,7 +45,7 @@
       </div>
       <div>
         <div>button</div>
-        <div><input type="button" value="I am input button" /></div>
+        <div><input type="button" value="I am an input button" /></div>
         <div class="right-aligned"><i class="selectButton" @click="select('button')">&gt;</i></div>
       </div>
       <div>
@@ -298,5 +298,8 @@ form * {
   -o-appearance: none;
 
   appearance: none;
+}
+.item-css {
+  height: 200px;
 }
 </style>
