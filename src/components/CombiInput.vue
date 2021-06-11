@@ -5,7 +5,6 @@
       <option>px</option>
       <option>em</option>
       <option>rem</option>
-      <option>rem</option>
       <option>%</option>
     </select>
     <select v-if="border" v-model="innerBorderStyle" class="small-input-flex">
