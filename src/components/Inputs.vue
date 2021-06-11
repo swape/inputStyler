@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="floating">
-      <div>Close button</div>
+      <!-- <div>Close button</div> -->
       <h3>{{ selectedElement }}</h3>
 
       <div v-if="selectedElement">
