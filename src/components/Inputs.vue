@@ -236,7 +236,7 @@ export default {
         attributes.forEach(at => {
           if (at[1] && at[1].value !== '') {
             output.push(`${at[0]}: ${at[1].value}${at[1].sizing}`)
-            if (`${at[0]}`.includes('border') && !`${at[0]}`.includes('radius')) {
+            if ((`${at[0]}`.includes('border') || `${at[0]}`.includes('outline')) && !`${at[0]}`.includes('radius')) {
               output.push(`${at[1].borderStyle} ${at[1].color}`)
             }
             output.push(';')

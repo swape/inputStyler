@@ -55,6 +55,21 @@
         </div>
       </div>
     </div>
+    <div>
+      <b>Outline</b>
+      <div>
+        <span></span>
+        <CombiInput
+          :value="getValue('outline')"
+          :sizing="getSizing('outline')"
+          :hidecolor="false"
+          :border="true"
+          :color="getColor('outline')"
+          :borderstyle="getBorderStyle('outline')"
+          @change="obj => inputChange('outline', obj)"
+        />
+      </div>
+    </div>
 
     <div>
       <b>Padding:</b> <label><input type="checkbox" v-model="combinedPadding" /> combined</label>
@@ -117,7 +132,7 @@
       </div>
     </div>
 
-    <div>TODO: <b>Outline / Shadow / Focus / Hover</b></div>
+    <div>TODO: <b> Shadow / Focus / Hover</b></div>
   </div>
 </template>
 <script>
@@ -280,7 +295,7 @@ export default {
       this.innerValues['border-top-right-radius'] = null
       this.innerValues['border-bottom-right-radius'] = null
       this.innerValues['border-bottom-left-radius'] = null
-      if (!this.innerValues.borderRadius) {
+      if (!this.innerValues['border-radius']) {
         this.innerValues['border-radius'] = borderRadiusTopCopy
       }
     },
